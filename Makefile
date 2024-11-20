@@ -9,10 +9,10 @@ libppm.so : ppm.c
 	$(CC) $(CFLAGS)  -fpic -shared $^ -o $@
  
 test: main.c libppm.so
-	$(CC) $(CFLAGS) $(LDFLAGS) main.c  -lppm -L. -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) main.c  -lppm -L. -WL,-rpath,. -o $@
 
 mandel: mandel.c libppm.so
-	$(CC) $(CFLAGS) $(LDFLAGS) $< -lppm -L.  -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $< -lppm -L. -WL,-rpath,. -lm -o $@
  
 
 clean:
